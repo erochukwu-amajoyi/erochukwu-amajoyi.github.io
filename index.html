@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erochukwu Amajoyi | Data & Automation Portfolio</title>
+<meta name="description" content="Supply-chain analytics projects by Erochukwu Amajoyi: Power BI supplier reporting, Excel inventory planning and tested Python data-quality automation.">
+<meta name="theme-color" content="#12272b">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2312272b'/%3E%3Cpath d='M7 23V16h4v7zm7 0V10h4v13zm7 0V6h4v17z' fill='%2389e0bd'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#projects">Skip to projects</a>
+<header class="masthead wrap">
+  <a class="identity" href="#top" aria-label="Erochukwu Amajoyi home"><span class="monogram">EA</span><span>Erochukwu Amajoyi</span></a>
+  <nav aria-label="Main navigation"><a href="#projects">Selected work</a><a href="#background">Background</a><a href="https://github.com/erochukwu-amajoyi/data-engineering-portfolio">GitHub ↗</a></nav>
+</header>
+<main id="top">
+<section class="hero wrap" aria-labelledby="intro-title">
+  <div class="hero-copy"><p class="eyebrow">DATA ANALYSIS · REPORTING · AUTOMATION</p>
+    <h1 id="intro-title">Making operational<br>data useful.</h1>
+    <p class="intro">I’m Erochukwu, an MSc AI &amp; Data Science graduate with experience in warehouse and production environments. These projects explore the questions behind reliable supply-chain reporting.</p>
+    <a class="button light" href="#projects">Explore the projects <span aria-hidden="true">↓</span></a>
+  </div>
+  <aside class="index" aria-label="Portfolio project index">
+    <p class="eyebrow">SELECTED WORK / 2026</p>
+    <a href="#powerbi"><span class="index-no">01</span><span>Are suppliers delivering?<small>Power BI · Data modelling · DAX</small></span><span aria-hidden="true">↗</span></a>
+    <a href="#excel"><span class="index-no">02</span><span>What needs replenishing?<small>Excel · Lookups · Inventory KPIs</small></span><span aria-hidden="true">↗</span></a>
+    <a href="#automation"><span class="index-no">03</span><span>Can this report be trusted?<small>Python · Validation · BOM checks</small></span><span aria-hidden="true">↗</span></a>
+  </aside>
+</section>
+<div class="context wrap"><span class="context-label">THE PROJECT DATA</span><p>Independent portfolio work using fictional kitchen-supply-chain data: <strong>80 items, 6 suppliers and 1,500 purchase-order lines.</strong> Snapshot: 21 September 2026. No employer data or live SAP connection.</p></div>
+<div id="projects" class="projects wrap">
+<section id="powerbi" class="project" aria-labelledby="powerbi-title">
+  <div class="section-label"><span>01 / SUPPLIER PERFORMANCE</span><span>POWER BI</span></div>
+  <div class="project-grid">
+    <div class="project-copy"><h2 id="powerbi-title">Are suppliers delivering<br>on their promises?</h2>
+      <p>A two-page report brings delivery reliability, receipt lead times and overdue orders into one view. Supplier, item category and due-month filters support follow-up on delivery problems.</p>
+      <h3>What I built</h3><p>A four-table model with three one-to-many relationships and eight DAX measures. The OTIF calculation includes overdue, unreceived lines in its denominator so incomplete deliveries are not hidden.</p>
+      <h3>What the data says</h3><p>Only 575 of 1,488 due lines arrived on time and in full. This gives a clear starting point for supplier reviews; it does not establish the causes of missed delivery promises.</p>
+      <div class="actions"><a class="button" href="files/Supply_Chain_Performance.pbix" download>Download Power BI report <span>↓</span></a><a class="text-link" href="files/Supply_Chain_Portfolio.zip" download>Model, DAX &amp; source data ↗</a></div>
+    </div>
+    <div class="evidence-panel">
+      <div class="panel-heading"><span class="eyebrow">DELIVERY SNAPSHOT</span><span class="tag">Synthetic data</span></div>
+      <div class="main-stat"><strong>38.6<span>%</span></strong><span>On time &amp; in full<br><small>575 / 1,488 due order lines</small></span></div>
+      <div class="ratio-bar" role="img" aria-label="575 on-time-in-full lines, 913 other due lines"><span></span></div>
+      <div class="legend"><span><i></i>On time &amp; in full</span><span><i class="muted-swatch"></i>Other due lines</span></div>
+      <div class="stat-row"><div><strong>18</strong><span>Overdue open lines</span></div><div><strong>18.0 <small>days</small></strong><span>Mean received lead time</span></div></div>
+      <p class="panel-note">Web summary calculated from the project data, not an embedded Power BI report. Download the .pbix to explore the actual report.</p>
+    </div>
+  </div>
+  <details><summary>Definitions, verification and limitations</summary><div class="detail-body"><p><strong>OTIF:</strong> order lines due by 21 September 2026, received by their due date, with received quantity at least the ordered quantity, divided by all lines due by that date. This is line-weighted, not value-weighted. The source assumes one receipt record per line.</p><p><strong>Verification:</strong> the supplied Windows validation record reports successful refresh, both report pages rendered, supplier selection and clearing, and the saved report with an embedded data model on 22 September 2026. This packaging review did not repeat native Power BI Desktop testing on the Mac.</p><p><strong>Refresh:</strong> the included PBIP source uses a local DataFolder parameter. Point it to the extracted clean-data folder before refreshing. There is no deployed Power BI Service report or scheduled cloud refresh.</p></div></details>
+</section>
+<section id="excel" class="project" aria-labelledby="excel-title">
+  <div class="section-label"><span>02 / INVENTORY PLANNING</span><span>EXCEL</span></div>
+  <div class="project-grid">
+    <div class="project-copy"><h2 id="excel-title">Know what to replenish.<br>Show the assumptions.</h2>
+      <p>An inventory workbook compares stock position with demand, lead time and safety-stock rules. It flags the items that need attention and estimates the purchase cost of replenishment.</p>
+      <h3>What I built</h3><p>Exact-match VLOOKUPs, SUMIFS and COUNTIFS connect item and supplier attributes to an 80-item inventory model. Excel Tables, validation rules, conditional formatting and a native chart make the calculations easier to inspect.</p>
+      <h3>A decision to investigate</h3><p>27 items meet the reorder rule. The model proposes £766,792 in purchases; this is a scenario estimate for review, not an approved spend or a claimed cost saving.</p>
+      <div class="actions"><a class="button" href="files/Inventory_Health.xlsx" download>Download Excel workbook <span>↓</span></a><a class="text-link" href="files/project-readme.txt">Read the calculation notes ↗</a></div>
+    </div>
+    <div class="evidence-panel inventory-panel">
+      <div class="panel-heading"><span class="eyebrow">INVENTORY REVIEW</span><span class="tag">80 items</span></div>
+      <div class="main-stat"><strong>27<span>/80</span></strong><span>Items at or below<br>their reorder point</span></div>
+      <div class="item-grid" role="img" aria-label="27 of 80 items meet the reorder rule"></div>
+      <div class="stat-row"><div><strong>£2.18m</strong><span>On-hand stock value</span></div><div><strong>12.43<small>×</small></strong><span>Annualised turnover</span></div></div>
+      <p class="panel-note">Turnover is annualised from a 90-day demand-cost proxy and average stock value. Inventory and order data share item IDs but are not a reconciled stock ledger.</p>
+    </div>
+  </div>
+  <details><summary>Replenishment logic and workbook limitations</summary><div class="detail-body"><p>Stock position = on hand − allocated + on order. Daily demand = trailing 90-day demand ÷ 90. The reorder point covers lead time plus safety days; the target also covers the review cycle. An order is proposed only when stock position is at or below the reorder point.</p><p>The model does not include minimum order quantities, pack sizes, on-order arrival timing or seasonality. Formula summaries are used, not a verified native PivotTable. The workbook is designed for the supplied 80-item fixture; adding items requires extending dependent ranges and checking calculations. Cached formula values and chart structure were checked; native Excel recalculation was not verified during packaging.</p></div></details>
+</section>
+<section id="automation" class="project" aria-labelledby="automation-title">
+  <div class="section-label"><span>03 / REPORTING CONTROLS</span><span>PYTHON</span></div>
+  <div class="project-grid">
+    <div class="project-copy"><h2 id="automation-title">Stop bad data before<br>it becomes a report.</h2>
+      <p>A repeatable validation pipeline checks purchase orders, item and supplier references, and bills of materials before promoting a new report as the latest trusted version.</p>
+      <h3>What I built</h3><p>CSV diagnostics, accepted-record outputs, JSON summaries and HTML reports. A content-based run ID makes repeated runs reproducible. Failed runs retain their diagnostic evidence without replacing the last successful report pointer.</p>
+      <h3>Evidence, not just a diagram</h3><p>The intentionally dirty fixture triggers nine issues and rejects five order rows. Twelve tests cover date boundaries, partial receipts, invalid references, BOM cycles and publication protection.</p>
+      <div class="actions"><a class="button" href="files/Supply_Chain_Portfolio.zip" download>Download code &amp; test data <span>↓</span></a><a class="text-link" href="files/pipeline.py">Read Python source ↗</a></div>
+    </div>
+    <div class="evidence-panel automation-panel">
+      <div class="panel-heading"><span class="eyebrow">VALIDATION RESULTS</span><span class="tag">12 tests passed</span></div>
+      <div class="run"><div><span class="run-title">Clean fixture</span><span class="status pass">PASS</span></div><p>1,500 accepted · 0 rejected · 0 issues</p><a href="files/clean-report.html">Open generated report ↗</a></div>
+      <div class="run"><div><span class="run-title">Dirty fixture</span><span class="status blocked">BLOCKED</span></div><p>1,496 accepted · 5 rejected · 9 issues</p><a href="files/blocked-report.html">Inspect diagnostics ↗</a></div>
+      <p class="panel-note">Clean and dirty inputs are separate fixtures. This pipeline detects and quarantines issues; it does not automatically repair the dirty data.</p>
+    </div>
+  </div>
+  <details><summary>Process design and implementation boundary</summary><div class="detail-body"><p><strong>Manual process being modelled:</strong> export → copy and paste → reconcile → prepare report → email. The proposed workflow validates the export first, records failures, then makes successful outputs available for approved delivery.</p><p><strong>Implemented:</strong> a local Python pipeline, data checks and tests. <strong>Proposed:</strong> a Power Automate delivery flow. There is no live flow, scheduler, email integration or SAP connection, and no measured time-saving claim. ERP/MRP familiarity here means working with simulated purchase-order, item, supplier and BOM structures.</p><p>Run the tests after extracting the project: <code>python -m unittest discover -s 03_Automation -v</code>. See the project README for the clean and dirty pipeline commands.</p></div></details>
+</section>
+</div>
+<section id="background" class="background wrap" aria-labelledby="background-title">
+  <div><p class="eyebrow">BEHIND THE PROJECTS</p><h2 id="background-title">Analysis with an<br>operational perspective.</h2><p>My MSc at the University of Hull focused on AI and data science. My dissertation examined how missing-data treatments affect churn prediction. Alongside this, warehouse and production roles gave me practical experience of time-sensitive work, accuracy and process discipline.</p></div>
+  <div class="more-work"><h3>More analytical work</h3><a href="https://public.tableau.com/app/profile/erochukwu.amajoyi/viz/NetflixPortfolioDashboard/NetflixContentPortfolio"><span><strong>Netflix content portfolio</strong><small>Interactive dashboard on Tableau Public</small></span><span aria-hidden="true">↗</span></a><a href="https://github.com/erochukwu-amajoyi/data-engineering-portfolio"><span><strong>Data engineering portfolio</strong><small>Python, SQL, data models and tested pipelines</small></span><span aria-hidden="true">↗</span></a></div>
+</section>
+</main>
+<footer class="wrap"><span>© 2026 Erochukwu Amajoyi</span><span>Independent projects · Fictional supply-chain data</span><a href="#top">Back to top ↑</a></footer>
+<script>const grid=document.querySelector('.item-grid');for(let i=0;i<80;i++){const cell=document.createElement('span');if(i<27)cell.className='reorder';grid.append(cell);}</script>
+</body>
+</html>
